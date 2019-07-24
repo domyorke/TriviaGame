@@ -10,4 +10,14 @@
     display: none;
 }
 
+#resultscreen {
+    display: none;
+}
+
+#finishedbutton {
+   margin-top: 20px;
+   margin-bottom: 40px;
+   position: absolute;
+   left: 50%;
+}
 

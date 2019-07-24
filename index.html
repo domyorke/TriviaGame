@@ -38,6 +38,8 @@
 
     <div id="start screen">
 
+
+
         <button type="button" class="btn btn-primary btn-lg btn-block startbutton">Start!</button>
 
 
@@ -47,11 +49,18 @@
 
         <h2>Timer: <span id="timer"></span></h2>
 
+        <div id = "mainquestions"></div>
+
+        <button type="button" class="btn btn-primary" id = "finishedbutton">I'm Done!</button>
+
+    </div>
+
+    <div class=container id=resultscreen>
+        <h2>Your Score: <span id="yourscore"></span>/10</h2>
 
 
     </div>
 
-    <div id="show-number"></div>
 
 
     <script>
@@ -69,43 +78,81 @@
 
 
 
-///////////////////////////////////////
+        ///////////////////////////////////////
+
+        var seconds = 60;
+        var intervalId;
+        var score = 0;
+
+        function finishQuiz() {
+            clearInterval(intervalId);
+            $("#quizarea").css("display", "none")
+            $("#resultscreen").css("display", "block")
+            $("input[name=rate]:checked").val()
 
 
-  
-    var number = 200;
-    var intervalId;
+            var userguess = $("input[name=question0]:checked").val()
+            if (String(userguess) === String(questions[0].correctAnswer)){
+                score = score + 1;
+            }
 
-    function run() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
-    }
+            var userguess = $("input[name=question1]:checked").val()
+            if (String(userguess) === String(questions[1].correctAnswer)){
+                score = score + 1;
+            }
 
-function decrement() {
-  number = number - 1;
-  $("#show-number").html("<h2>" + number + "</h2>");
-  if (number === 0) {
-    stop();
-    alert("Time Up!");
-  }
-}
-
-run();
-
-        
-       
-   /*    
+            var userguess = $("input[name=question2]:checked").val()
+            if (String(userguess) === String(questions[2].correctAnswer)){
+                score = score + 1;
+            }
 
 
+            var userguess = $("input[name=question3]:checked").val()
+            if (String(userguess) === String(questions[3].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question4]:checked").val()
+            if (String(userguess) === String(questions[4].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question5]:checked").val()
+            if (String(userguess) === String(questions[5].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question6]:checked").val()
+            if (String(userguess) === String(questions[6].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question7]:checked").val()
+            if (String(userguess) === String(questions[7].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question8]:checked").val()
+            if (String(userguess) === String(questions[8].correctAnswer)){
+                score = score + 1;
+            }
+
+            var userguess = $("input[name=question9]:checked").val()
+            if (String(userguess) === String(questions[9].correctAnswer)){
+                score = score + 1;
+            }
 
 
 
+            $("#yourscore").append(score);
 
 
-       //////////////////////////////////////////////////
+            
 
-        var secondsLeft = 5;
-        
+        }
+
+        $("#finishedbutton").on("click", finishQuiz);
+      
 
         $(".startbutton").on("click", function () {
             $("#quizarea").css("display", "block")
@@ -113,26 +160,26 @@ run();
 
 
 
+            function run() {
+                clearInterval(intervalId);
+                intervalId = setInterval(decrement, 1000);
+            }
 
+            function decrement() {
+                seconds = seconds - 1;
+                $("#timer").html(seconds);
+                if (seconds === 0) {
+                    stop();
+                    alert("You're MEOWT of TIME!");
+                    finishQuiz();
+                }
+            }
 
-            
-                        function clockTick() {
-                            secondsLeft = secondsLeft - 1;
-                            
-                            if (secondsLeft > 0) {
-                                setTimeout(clockTick, 1000);
-                                $("#timer").append(secondsLeft);
-                            } else {
-                                alert("Time's Up!");
-                            }
-                       }
-                       setTimeout(clockTick, 1000);
-            
+            run();
 
-            
-            
         })
 
+        /*    
         */
 
         var questions = [
@@ -206,14 +253,18 @@ run();
         ]
 
         for (let i = 0; i < questions.length; i++) {
-            $("#quizarea").append("<p>" + questions[i].question + "</p>");
+            $("#mainquestions").append("<p>" + questions[i].question + "</p>");
 
 
             for (let j = 0; j < questions[i].answers.length; j++) {
-                $("#quizarea").append("<p>" + '<input type="radio" name="test" value="test value"> </input>' + questions[i].answers[j] + "</p>");
+                var answer = questions[i].answers[j];
+                $("#mainquestions").append("<p>" + '<input type="radio" name="question' + String(i) + '" value="' + answer + '"> </input>' + answer + "</p>");
             }
 
+
         }
+
+
 
 
     </script>
