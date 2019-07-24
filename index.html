@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Catrivia!</h1>
+            <p class="lead">A Trivia Site for Indoor Cats</p>
+        </div>
+    </div>
+
+    <div id="start screen">
+
+        <button type="button" class="btn btn-primary btn-lg btn-block startbutton">Start!</button>
+
+
+    </div>
+
+    <div class=container id="quizarea">
+
+        <h2>Timer: <span id="timer"></span></h2>
+
+
+
+    </div>
+
+    <div id="show-number"></div>
+
+
+    <script>
+
+
+
+        ///////////////////////Algorithm/////////////////////////
+
+        //1. Create start button homepage
+        //2. When user clicks start, page will display questions, and a timer will start
+        //3. When user selects their answers and submits, an alert will pop up showing thier score
+        //3b. If the timer runs out before user finishes, an alert will pop up showing their score
+        //4. User has an option to reset/try again
+
+
+
+
+///////////////////////////////////////
+
+
+  
+    var number = 200;
+    var intervalId;
+
+    function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+    }
+
+function decrement() {
+  number = number - 1;
+  $("#show-number").html("<h2>" + number + "</h2>");
+  if (number === 0) {
+    stop();
+    alert("Time Up!");
+  }
+}
+
+run();
+
+        
+       
+   /*    
+
+
+
+
+
+
+
+       //////////////////////////////////////////////////
+
+        var secondsLeft = 5;
+        
+
+        $(".startbutton").on("click", function () {
+            $("#quizarea").css("display", "block")
+            $(".startbutton").css("display", "none")
+
+
+
+
+
+            
+                        function clockTick() {
+                            secondsLeft = secondsLeft - 1;
+                            
+                            if (secondsLeft > 0) {
+                                setTimeout(clockTick, 1000);
+                                $("#timer").append(secondsLeft);
+                            } else {
+                                alert("Time's Up!");
+                            }
+                       }
+                       setTimeout(clockTick, 1000);
+            
+
+            
+            
+        })
+
+        */
+
+        var questions = [
+            //1
+            {
+                question: "1. Cats can jump up to _____ times their length",
+                answers: [2, 4, 6, 8],
+                correctAnswer: 6,
+            },
+            //2
+            {
+                question: "2. Cats have less bones than humans.",
+                answers: ["True", "False"],
+                correctAnswer: "False",
+            },
+            //3
+
+            {
+                question: "3. Cats typically sleep _____ hours a day",
+                answers: ["6-10", "8-12", "10-14", "12-16"],
+                correctAnswer: "12-16",
+            },
+
+
+            //4
+            {
+                question: "4. Cats have up to _____ different vocalizations compared to dogs, who have up to _____ different vocalizations",
+                answers: ["10, 100", "100, 10", "100, 200", "200, 100"],
+                correctAnswer: "100, 10",
+            },
+
+
+            //5
+            {
+                question: "5. Meowing is a behavior cats developed _____",
+                answers: ["to communicate with people", "To signal they are hungry", "To wake you up at 4 in the morning", "All of the above"],
+                correctAnswer: "All of the above",
+            },
+            //6
+            {
+                question: "6. A group of kittens is called a _____",
+                answers: ["Gang", "Pack", "Kindle", "Cast"],
+                correctAnswer: "Kindle",
+            },
+            //7
+            {
+                question: "7. Studies have shown that domesticated cats first appeared around _____ B.C.",
+                answers: [4600, 3600, 2600, 1600],
+                correctAnswer: 3600,
+            },
+            //8
+            {
+                question: "8. The first known cat video was recorded in _____",
+                answers: [1894, 1904, 1914, 1924],
+                correctAnswer: 1894,
+            },
+            //9
+            {
+                question: "9. There are about _____ million pet cats in the United States, which makes them the most popular pet in the country!",
+                answers: [68, 78, 88, 98],
+                correctAnswer: 88,
+            },
+            //10
+            {
+                question: "10. Cats sweat through their _____.",
+                answers: ["paws", "ears", "lips", "nose"],
+                correctAnswer: "paws"
+            },
+
+
+        ]
+
+        for (let i = 0; i < questions.length; i++) {
+            $("#quizarea").append("<p>" + questions[i].question + "</p>");
+
+
+            for (let j = 0; j < questions[i].answers.length; j++) {
+                $("#quizarea").append("<p>" + '<input type="radio" name="test" value="test value"> </input>' + questions[i].answers[j] + "</p>");
+            }
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
